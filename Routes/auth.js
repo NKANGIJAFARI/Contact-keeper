@@ -25,19 +25,16 @@ router.get('/', auth, async(req, res)=>{
 });
 
 
-
-
 //@route    POST api/users
 //@desc:    Auth user and get the token
 //@access:  public
-
 
 const checking = [
     check("email", "Invalid Credentials"),
     check("password", "Invalid credentials")
 ];
 
-router.post('/', checking, async(req, res)=>{
+router.post('/', checking, async(req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()})
@@ -48,13 +45,13 @@ router.post('/', checking, async(req, res)=>{
     try {
         let user = await User.findOne({email}); 
         if(!user){
-            return res.status(400).json({msg: "User doesnt exists" })
+            return res.status(400).json({msg: "Invalid Credentials" })
         }
 
-        const passwordMatch = await bcrypt.compare(password, user.password)
+        const passwordMatch = await bcrypt.compare(password, user.password);
         if(!passwordMatch){
             return res.status(400).json({
-                msg: "Password doesnt match the h"
+                msg: "Invalid Credentials"
             })
         }
 

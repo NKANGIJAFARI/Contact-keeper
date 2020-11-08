@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt  = require('jsonwebtoken');
 const config = require('config');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 const {check, validationResult } = require('express-validator');
@@ -67,10 +68,59 @@ router.post('/', checking, async (req, res)=>{
 
 
     } catch (error) {
-        
         console.error(error.message);
         res.status(400).send("Server Error")
     }
 });
+
+
+
+// //@route    POST api/users
+// //@desc:    Register users 
+// //@access:  Private
+// router.put('/', auth, async(req, res)=>{
+
+//     const {name, email, password} = req.body;
+
+//     try {
+//         let alreadyExists = await User.findOne({email});
+
+//         if(alreadyExists){
+//             res.status(400).json({msg: "Email already Taken"})
+//         }
+
+//         let user = await User.findOne(req.user.email);
+
+//         if(!user){
+//             res.status(400).json({msg: "User already exist"})
+//         }
+
+        
+//         //   //Make sure only owner of contact can update it.
+//         // if(user.user.toString() !== req.user.id){
+//         //     return res.status(401).json({msg: "Unauthorized to change contact"})
+//         // }
+//         const userEdits = {};
+
+//         if(name){userEdits.name= name};
+//         if(email){userEdits.email= email};
+//         if(password){
+//             const salt = await bcrypt.genSalt(10);
+//             userEdits.password = await bcrypt.hash(password, salt);
+//         };
+        
+//         user = await User.findOneAndUpdate(
+//             req.user.email, 
+//             {$set : userEdits},
+//             {new: true});
+
+//         res.json(user);            
+
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({msg: "Server Error"})
+//     }
+// } )
+
 
 module.exports = router;

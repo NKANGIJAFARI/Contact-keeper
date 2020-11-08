@@ -5,22 +5,31 @@
   "main": "server.js",
   "scripts": {
     "start": "node  server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "clientInstall": "npm install --prefix client",
+    "dev": "concurrently  \"npm run server\" \"npm run client\" ",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.12",
     "bcrypt": "^5.0.0",
     "config": "^3.3.2",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
     "git": "^0.1.5",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.9"
+    "mongoose": "^5.10.9",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
     "nodemon": "^2.0.5"
   }
 }
+ 

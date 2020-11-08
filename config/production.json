@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb://kingjefas:king1234@contactskeep-shard-00-00.9ujsb.mongodb.net:27017,contactskeep-shard-00-01.9ujsb.mongodb.net:27017,contactskeep-shard-00-02.9ujsb.mongodb.net:27017/test?ssl=true&replicaSet=atlas-147eus-shard-0&authSource=admin&retryWrites=true&w=majority",
+    "jwtSecret": "secret"
+}
